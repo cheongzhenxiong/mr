@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "mr"
+version = "0.1.0"
+description = "CLI to run preconfigured builds with Jenkins"
+authors = ["peres"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+keyring = "^23.0.1"
+python-jenkins = "^1.7.0"
+rich = "^10.1.0"
+tomlkit = "^0.7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+mr = "mr.mr:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

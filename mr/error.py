@@ -1,0 +1,2 @@
+class MrError(Exception):
+	pass

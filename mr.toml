@@ -1,0 +1,41 @@
+#
+#	Sample configuration for mr.
+#
+
+# 'servers' is an array of tables. Every table describes a Jenkins server,
+# and requires the following properties:
+#
+# - name: a string used by the tasks defined in this file; any string will do
+#
+# - url: the url for the Jenkins master
+#
+# - credentials: a name for the credentials to use for the server; mr will
+#                look it up in the keychain, or just ask the user if missing
+[[servers]]
+name = "local"
+url = "http://localhost:8080"
+credentials = "jenkins-local-token"
+
+# 'tasks' is an array of tables. Every table describes a task, i.e. a Jenkins
+# build with a combination of parameters. Required properties:
+#
+# - name: a string used to identify the task from the command line
+#
+# - server: the name of the server to use; must match one of the "servers" above
+#
+# - job: the name of the Jenkins job to run for this task
+#
+# - parameters: a table of parameters to pass to the Jenkins job; the table must
+#               be present even if empty
+[[tasks]]
+name = "with-secret"
+server = "local"
+job = "mytestpipeline"
+parameters = { branch = "origin/master", distribution = "friends", use_real_secrets = true, magic = 54642 }
+
+[[tasks]]
+name = "without-secret"
+server = "local"
+job = "mytestpipeline"
+# the "magic" parameter is missing, so Jenkins will use the default
+parameters = { branch = "origin/master", distribution = "job", use_real_secrets = false }
