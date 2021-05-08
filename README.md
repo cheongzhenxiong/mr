@@ -16,7 +16,6 @@ This tools makes sense when you have _parametrized_ jobs that you are manually s
 #### Limitations (so far)
 
 - supports only parametrized pipelines
-- no friendly error messages if Jenkins REST API fails
 - only tested on macOS, but should work on Windows and Linux too
 
 
@@ -46,7 +45,6 @@ Features:
 
 - option to override the user name (--user)
 - catch ctrl-c
-- interpret Jenkins errors and emit better messages
 - option to wait for build completion (polling for feedback)
 
 Tech debt:
