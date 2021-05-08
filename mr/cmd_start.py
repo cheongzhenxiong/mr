@@ -21,7 +21,7 @@ class StartCommand(object):
 		log_task_start(self.task_name)
 		log_build_starting(task["job"], server["url"])
 		build = start_task_wait_confirmation(username, token, server["url"], task["job"], parameters)
-		log_build_started(build["number"], build["url"])
+		log_build_started(build.number, build.url)
 
 
 class TaskNotFound(MrError):

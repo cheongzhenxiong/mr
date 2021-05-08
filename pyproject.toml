@@ -7,9 +7,9 @@ authors = ["peres"]
 [tool.poetry.dependencies]
 python = "^3.9"
 keyring = "^23.0.1"
-python-jenkins = "^1.7.0"
 rich = "^10.1.0"
 tomlkit = "^0.7.0"
+api4jenkins = "^1.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
