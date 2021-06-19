@@ -14,7 +14,9 @@
 #
 # - certs (optional): path to a certificate chain that will be used for SSL
 #                     verification. Certificate chains are documented at:
-#                     https://docs.python.org/3/library/ssl.html#certificate-chains
+#                     https://docs.python.org/3/library/ssl.html#certificate-chains.
+#					  If the path is relative, it will be considered relative
+#					  to the location of this config file.
 #
 [[servers]]
 name = "local"

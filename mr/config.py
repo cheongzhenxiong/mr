@@ -6,6 +6,7 @@
 
 from .error import MrError
 import tomlkit
+import os.path
 from collections import Counter
 
 class NoConfigurationFile(MrError):
@@ -70,6 +71,19 @@ def _validate_configuration(config):
 	_validate_no_duplicate_names("Server", _servers(config))
 	_validate_named_items_exist("Server", _used_servers(config), _servers(config))
 
+
+def _fixup_relative_paths(config, base_path):
+	for server in _servers(config):
+		if not "certs" in server:
+			continue
+
+		cert_path = server["certs"]
+		if not os.path.isabs(cert_path):
+			server["certs"] = os.path.join(base_path, cert_path)
+
+	return config
+
+
 def fetch_configuration(config_path):
 	try:
 		h = open(config_path)
@@ -82,6 +96,9 @@ def fetch_configuration(config_path):
 		raise InvalidConfigurationFile(config_path, e)
 	finally:
 		h.close()
+
+	base_path = os.path.dirname(os.path.abspath(config_path))
+	config = _fixup_relative_paths(config, base_path)
 
 	_validate_configuration(config)
 		
