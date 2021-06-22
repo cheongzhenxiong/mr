@@ -15,12 +15,13 @@ class StartCommand(object):
 	def run(self, config):
 		task = find_task_by_name(self.task_name, config["tasks"])
 		server = find_server_by_name(task["server"], config["servers"])
+		certs = server.get("certs", None)
 		username, token = ensure_password(server["credentials"])
 		parameters = restrict_overrides_to_known_parameters(task["parameters"], self.param_overrides)
 
 		log_task_start(self.task_name)
 		log_build_starting(task["job"], server["url"])
-		build = start_task_wait_confirmation(username, token, server["url"], task["job"], parameters)
+		build = start_task_wait_confirmation(username, token, server["url"], certs, task["job"], parameters)
 		log_build_started(build.number, build.url)
 
 

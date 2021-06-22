@@ -7,8 +7,8 @@ from api4jenkins import Jenkins, ItemNotFoundError
 from .console import run_with_indeterminate_progress
 from time import sleep
 
-def start_task_wait_confirmation(username, token, server_url, job, parameters):
-	jenkins = Jenkins(server_url, auth=(username, token))
+def start_task_wait_confirmation(username, token, server_url, certs, job, parameters):
+	jenkins = Jenkins(server_url, auth=(username, token), verify=certs or True)
 	if not jenkins.exists():
 		raise CannotConnect(server_url)
 

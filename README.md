@@ -12,6 +12,7 @@ This tools makes sense when you have _parametrized_ jobs that you are manually s
 - uses local configuration ([sample](mr.toml)), which you can check into version control
 - stores credentials securely (i.e. keychain on macOS)
 - no need to fire up the browser
+- can customize SSL certificates (useful in a corporate environment)
 
 #### Limitations (so far)
 
