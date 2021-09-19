@@ -9,7 +9,7 @@ python = "^3.9"
 keyring = "^23.0.1"
 rich = "^10.1.0"
 tomlkit = "^0.7.0"
-api4jenkins = "^1.5"
+api4jenkins = "^1.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
