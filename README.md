@@ -28,7 +28,7 @@ Installation from source (needs `Python 3` and [poetry](https://github.com/pytho
 
 1. clone this repo
 2. run `poetry build`
-3. install with `python3 -m pip dist/WHEEL_FILE_NAME`
+3. install with `python3 -m pip install dist/WHEEL_FILE_NAME`
 
 ## Usage
 
