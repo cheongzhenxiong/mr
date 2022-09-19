@@ -5,7 +5,7 @@
 from .error import MrError
 from .console import *
 from .jenkins_client import start_task_wait_confirmation
-from .auth import ensure_password
+from .auth import ensure_password, default_username
 
 class StartCommand(object):
 	def __init__(self, task_name, param_overrides):
@@ -15,8 +15,9 @@ class StartCommand(object):
 	def run(self, config):
 		task = find_task_by_name(self.task_name, config["tasks"])
 		server = find_server_by_name(task["server"], config["servers"])
+		username = server.get("username", default_username())
 		certs = server.get("certs", None)
-		username, token = ensure_password(server["credentials"])
+		token = ensure_password(server["credentials"], username)
 		parameters = restrict_overrides_to_known_parameters(task["parameters"], self.param_overrides)
 
 		log_task_start(self.task_name)

@@ -22,11 +22,14 @@ def set_password(password, credential_name, user):
 	except:
 		raise AuthError
 
-def ensure_password(credential_name, user=getpass.getuser()):
+def default_username():
+	return getpass.getuser()
+
+def ensure_password(credential_name, user):
 	password = get_password(credential_name, user)
 	if password is None:
 		password = ask_password("Enter password/token for '{}' at '{}': ".format(user, credential_name))
 		set_password(password, credential_name, user)
 		password = get_password(credential_name, user)
 
-	return (user, password)
+	return password

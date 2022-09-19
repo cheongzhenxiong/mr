@@ -9,6 +9,9 @@
 #
 # - url: the url for the Jenkins master
 #
+# - username (optional): the account to use to connect to the Jenkins master.
+#                        If missing, the login user name will be used.
+#
 # - credentials: a name for the credentials to use for the server; mr will
 #                look it up in the keychain, or just ask the user if missing
 #
@@ -21,6 +24,7 @@
 [[servers]]
 name = "local"
 url = "http://localhost:8080"
+username = "john.doe"
 credentials = "jenkins-local-token"
 
 # 'tasks' is an array of tables. Every table describes a task, i.e. a Jenkins
