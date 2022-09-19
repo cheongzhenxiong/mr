@@ -8,14 +8,15 @@ from .jenkins_client import start_task_wait_confirmation
 from .auth import ensure_password, default_username
 
 class StartCommand(object):
-	def __init__(self, task_name, param_overrides):
+	def __init__(self, task_name, param_username, param_overrides):
 		self.task_name = task_name
+		self.param_username = param_username
 		self.param_overrides = param_overrides
 
 	def run(self, config):
 		task = find_task_by_name(self.task_name, config["tasks"])
 		server = find_server_by_name(task["server"], config["servers"])
-		username = server.get("username", default_username())
+		username = self.param_username or server.get("username", default_username())
 		certs = server.get("certs", None)
 		token = ensure_password(server["credentials"], username)
 		parameters = restrict_overrides_to_known_parameters(task["parameters"], self.param_overrides)

@@ -44,7 +44,6 @@ Installation from source (needs `Python 3` and [poetry](https://github.com/pytho
 
 Features:
 
-- option to override the user name (--user)
 - catch ctrl-c
 - option to wait for build completion (polling for feedback)
 

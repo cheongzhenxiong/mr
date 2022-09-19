@@ -19,6 +19,7 @@ def parse_arguments():
 	subparsers = parser.add_subparsers(title='commands', required=True, dest="command")
 	start_parser = subparsers.add_parser("start", description="Starts a build on a Jenkins server", parents=[configurable_command_parser])
 	start_parser.add_argument("task", help="The task to start")
+	start_parser.add_argument("--user", help="The account name on Jenkins.")
 	start_parser.add_argument("--override", action="append", nargs=2, default=[], metavar=("name", "value"), help="Override a parameter for the build")
 	start_parser.set_defaults(dispatch=dispatch_start)
 
@@ -34,8 +35,9 @@ def parse_arguments():
 
 def dispatch_start(args):
 	task_name = args.task
+	user_name = args.user
 	param_overrides = { item[0]: item[1] for item in args.override }
-	return StartCommand(task_name, param_overrides)
+	return StartCommand(task_name, user_name, param_overrides)
 
 def dispatch_list(args):
 	return ListCommand()
